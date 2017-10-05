@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CDR</title>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
+  </head>
+  <body class="classic">
+    <app-main>Loading...</app-main>     
+    <!-- Global Footer ends-->
+	<!-- Polyfills 
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+	<script src="systemjs.config.js"></script> 	-->
+	<!--<script src="https://www.gstatic.com/charts/loader.js"></script>-->
+    <script src="assets/scripts/chart-loader.js"></script>
+    <script>  
+        /* !important: You want to give this variable(let googleLoaded = false;). 
+            This is used to run multiple chart in your jade.*/
+        var googleLoaded = false;
+        /* !important: Define which chart packages to preload.Because this package uses ChartWrappers you can use 
+        any chart type that Google supports, but if it // isn't loaded it will load it on demand. */
+        //var googleChartsPackagesToLoad = ['geochart'];
+	</script>
+    <script src="assets/scripts/jquery.min.js"></script>
+    <script src="assets/scripts/bootstrap.min.js"></script>
+  </body>
+</html>

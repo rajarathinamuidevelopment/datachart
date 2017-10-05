@@ -1,0 +1,113 @@
+/* You can add global styles to this file, and also import other style files */
+.appName{
+      margin-left: 6%;
+}
+body{margin-bottom: 0}
+.container.whitepage{min-height: 80px}
+.navbar-brand-bss {
+    min-height: 65px;
+    width: 170px;
+    background-repeat: no-repeat;
+    background-position: -15px center;
+    background-size: 164px 101px;
+    display: block;
+}
+.navbar-H2{float:left;margin-top: 27px;color: #000}
+.fl{float: left}
+.theame{text-align: right;line-height: 65px;}
+.navbar{padding-top: 20px}
+.mt-0{margin: 0}
+.theame-link:hover{text-decoration: none;}
+.btn-fixed-width{
+  width: 140px;
+  line-height: 14px !important;
+}
+.btn-danger::after, .btn-primary::after {
+    content: "";
+}
+.btn-danger, .btn-primary {
+    padding: 0 30px 0 30px;
+}
+.mandate {
+    color: red;
+}
+.h1{color: #fff; padding-left: 20px}
+/* body.classic{} */
+.classic .global-header{
+  background-color: #5c8297
+}
+.classic .btn{
+  background: #ececec;
+  color: #0c3c60;
+  border-width: 2px;
+  border-style: outset;
+}
+.classic .btn-classic, .classic .btn-primary{
+  padding-top: 3px;
+  border: 1px solid #0c3c60;
+  border-color: #0c3c60 #0c3c60 #0c3c60;
+}
+.classic table.table-rwd thead th{
+  background:#0c3c60;
+  color: #fff;
+}
+.classic .navbar-H2{color: #fff}
+.classic .theame-link{
+  color: #fff;
+}
+.classic .pagination>li.active>a, .pagination>li.active>span {
+    background-color: #0c3c60
+}
+.classic .vz-loading-gif i.fa {
+    color: #0c3c60;
+}
+.classic .theame{color: #fff}
+.classic .btn-danger.disabled, .btn-danger.disabled.active, .btn-danger.disabled.focus, .btn-danger.disabled:active, .btn-danger.disabled:focus, .btn-danger.disabled:hover, .btn-danger[disabled], .btn-danger[disabled].active, .btn-danger[disabled].focus, .btn-danger[disabled]:active, .btn-danger[disabled]:focus, .btn-danger[disabled]:hover, fieldset[disabled] .btn-danger, fieldset[disabled] .btn-danger.active, fieldset[disabled] .btn-danger.focus, fieldset[disabled] .btn-danger:active, fieldset[disabled] .btn-danger:focus, fieldset[disabled] .btn-danger:hover {
+    
+    border-color: #0c3c60;
+}
+.classic .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: .3;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.classic .btn.disabled:hover, .btn[disabled]:hover, fieldset[disabled]:hover .btn {
+  border-color: red;
+
+}
+/*.navbar{margin-bottom: 0}*/
+/*.navbar-default {
+  border-radius: 0;
+  background-color: #FFF;  
+  border-width: 0;
+  border-right-width: 2px;
+}*/
+
+/*@media only screen and (min-width: 1200px){
+  .navbar-default {
+    height: calc(100vh);
+  }
+  .vertical-line{  
+   border-right: 1px solid lightgrey;  
+}
+.buttonLeftTab{
+  width: 15em;
+  white-space: normal;
+}   
+}
+
+@media screen and (max-width: 600px){    
+  .nav>li {    
+    font-weight: bold;   
+  }
+  .buttonLeftTab{
+  width: 100%;
+  white-space: normal;
+}
+ 
+}*/
+
+

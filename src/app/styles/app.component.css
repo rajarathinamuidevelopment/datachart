@@ -1,0 +1,103 @@
+/* make sidebar nav vertical */
+/*@media only screen and (min-width: 1200px){
+  .sidebar-nav { 
+  border-right: none;
+}
+} 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;    
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
+
+  }
+  .sidebar-nav .navbar li a.active {
+   color:#CD040B;
+   background-color: #F2f2f2;
+  }
+  .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, 
+  .navbar-default .navbar-nav>.active>a:hover {
+    color: #CD040B;
+    background-color: #F2f2f2;
+}
+}
+.sidebar-nav {
+  overflow: auto;
+  font-family: verdana;
+  font-size: 12px;
+  font-weight: 100;
+  background-color: #fff;
+  top: 0px;  
+  
+  color: #000;
+  border-right: 1px solid #ccc
+}
+.sidebar-nav .navbar li {
+  padding-left: 0px;
+  border-bottom: 1px solid #ccc;
+}
+.sidebar-nav .navbar li {
+  padding-left: 0px;
+  border-bottom: 1px solid #ccc;
+}
+.sidebar-nav .navbar li {
+  padding-left: 0px;
+  border-bottom: 1px solid #ccc;
+}
+.sidebar-nav .navbar li a
+ {
+  text-decoration: none;
+  color: #000;
+  padding-left: 10px;
+  font-weight: bold;
+}
+.sidebar-nav .navbar li.active a {
+  color: #CD040B;
+}
+.sidebar-nav .navbar li a i {
+  padding-left: 10px;
+  width: 20px;
+  padding-right: 20px;
+}
+.sidebar-nav .navbar li:hover {
+  background-color: #f2f2f2;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}*/
+/*eof side bar code*/
+.rightArrowIcon{
+  padding-right: 10px;
+}
+.navbar {
+    padding-top: 0px;
+}
+.sidebar-nav ul .active,
+.sidebar-nav li .active,.sidebar-nav li .active a { 
+  background-color: #f2f2f2;
+  color: #CD040B;
+}
+/*For picker to come down*/
+.pageHeader {
+  height: 85px !important;
+}
+.margin-zero {
+  padding-top:10px;
+}
+.padLeftZero{padding-left: 0}

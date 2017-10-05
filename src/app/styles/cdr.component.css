@@ -1,0 +1,66 @@
+.btnDiv{
+    margin-right: 1.0%;
+}
+.radioDiv{
+    margin-top:-10px;
+}
+.checkBoxtbl{
+    width:5px;
+}
+
+.dailychk2{
+  margin-left: 14px;  
+}
+.cdrtable td {
+    vertical-align: middle !important;
+    text-align: right !important;
+    /*height: 50px;*/
+}
+.cdrtable th {
+    /*height: 50px;*/
+    padding-top:7px;
+    text-align: right !important;
+}
+@media screen and (max-width: 600px) { 
+    .lbl,table td:before { 
+        content: attr(data-label); 
+        float: left; 
+        text-transform: uppercase; 
+        font-weight: bold; 
+        font-size: 13px;
+    } 
+    table td {
+        text-align: right !important;
+    } 
+    table td:first-child {
+        text-align: left !important;
+    }
+    
+}
+.datePickerBtn{
+    border-style: none;
+}
+.checkBoxtbl[_ngcontent-c2] {    
+    margin-right: 7px;
+}
+@media (min-width: 992px)
+{
+    .graphDiv {   
+        margin-top: 31px;
+        padding-left:0px;
+    
+    }
+    .tableDiv{
+        padding-right:0px;
+    }
+    .table-bordered > tbody > tr > td{
+        padding-bottom: 0px;
+        padding-top: 0px;
+    }
+    .cdrtable th, .cdrtable tr{
+        font-size: 13px!important;
+    }
+
+}
+
+

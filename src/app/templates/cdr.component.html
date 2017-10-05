@@ -1,0 +1,216 @@
+<div *ngIf="!isApiError" class="alert alert-info clearfix" role="alert">
+<a class="close" data-dismiss="alert" href="#">×</a>
+<span class="alert-icon"></span>
+<p>This data is populated from Mock Response as there is an error in API</p>
+</div>
+<div *ngIf="errMsg.length>0" class="alert alert-danger clearfix" role="alert">
+<a class="close" data-dismiss="alert" href="#">×</a>
+<span class="alert-icon"></span>
+<p>{{ errMsg }}</p>
+</div> <br>
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="row form-group">
+            <div class="col-sm-4 label-head"><label class="control-label">{{translateService.translatedArray['IMSI']}}:</label>                </div>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" [(ngModel)]="imsiInput" name="imsi" #imsi>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-sm-4 label-head"><label class="control-label">{{translateService.translatedArray['Provider']}}:<span class="mandate"> *</span></label></div>
+            <div class="col-sm-7 dropdown form-group">
+                <select class="btn dropdown-toggle" #selectedProvider data-toggle="dropdown" (change)="getSearchEnabled('provider', selectedProvider.value );">
+                    <option>Select</option>
+                    <option *ngFor="let pData of providerData" [ngValue]="pData">{{pData.serviceProvider}}-{{pData.serviceProvideName}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="row form-group">
+            <div class="col-sm-2 label-head"><label class="control-label">{{translateService.translatedArray['Period']}}:<span class="mandate">*</span></label></div>
+            <div class="col-sm-10 radioDiv">
+                <div class="col-md-4 col-sm-4">
+                    <div class="radio ">
+                        <input type="radio" [(ngModel)]="selectedOption" (change)="clearResult(); getSearchEnabled('period', selectedProvider.value);" value="pMonth" name="optradio">
+                        <label>{{translateService.translatedArray['Previous Month']}}</label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="radio ">
+                        <input type="radio" [(ngModel)]="selectedOption" (change)="clearResult(); getSearchEnabled('period', selectedProvider.value);" value="cMonth" name="optradio">
+                        <label>{{translateService.translatedArray['Current Month']}}</label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="radio ">
+                        <input type="radio" [(ngModel)]="selectedOption" (change)="clearResult(); getSearchEnabled('period', selectedProvider.value);" value="date" name="optradio">
+                        <label>{{translateService.translatedArray['Date']}}</label>
+                    </div>
+                </div>
+                <!--<div class="col-md-3 col-sm-3">
+                    <div class="radio ">
+                        <input type="radio" [(ngModel)]="selectedOption" (change)="clearResult()" value="upto" name="optradio">
+                        <label>Upto</label>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <div *ngIf="selectedOption=='pMonth' || selectedOption=='cMonth'" class="row form-group">
+            <div class="col-sm-2 label-head"><label class="control-label">{{translateService.translatedArray['Split by']}}:<span class="mandate"> </span></label></div>
+            <div class="col-sm-5 radioDiv">
+                <label>
+                    <div class="checkbox dailychk2">
+                        <input type="checkbox" [(ngModel)]="dailyChecked" name="checkboxDaily" (click)="selectDaily();" role="checkbox"> 
+                        <label>{{translateService.translatedArray['Daily']}}</label>
+            </div>
+            </label>
+        </div>
+    </div>
+    <div *ngIf="selectedOption=='date'" class="row form-group">
+        <!--<div class="col-sm-1 label-head"><label class="control-label">
+                {{translateService.translatedArray['Date']}}:<span class="mandate"> </span></label>
+        </div>-->
+        <!--<div class="col-sm-5">
+            <div class="date-picker">
+                <input id="inpDt-picker2" #datePickerField type="text" (blur)="getDate(datePickerField.value)" name="datePicker" placeholder="{{ translateService.translatedArray['Pick date']}}"
+                    close-text="Close" data-provide="datepicker" datepicker-popup="mm-dd-yyyy" class="datepicker form-control dailychk">
+                <span class="input-group-btn">
+                        <button id="btn-date-picker2" class="btn btn-default btn-xs datePickerBtn" type="button" tabindex="0">
+                            <span class="icon-today"></span>
+                </button>
+                </span>
+            </div>
+        </div>-->
+        <div  class="col-sm-6">
+            <div class="col-sm-2 label-head"><label class="control-label">
+                    {{ translateService.translatedArray['from']}}:<span class="mandate">* </span></label>
+            </div>
+            <div class="col-sm-10">
+                <!--<div class="date-picker">
+                    <input id="inpDt-picker2" #datePickerField1 type="text" (blur)="getDateRange(datePickerField1.value, 'from', selectedProvider.value);" name="datePicker" placeholder="{{ translateService.translatedArray['Pick date']}}"
+                        close-text="Close" data-provide="datepicker" datepicker-popup="mm-dd-yyyy" class="datepicker form-control dailychk">
+                    <span class="input-group-btn">
+                            <button id="btn-date-picker2" class="btn btn-default btn-xs datePickerBtn" type="button" tabindex="0">
+                                <span class="icon-today"></span>
+                    </button>
+                    </span>
+                </div>-->
+                <my-date-picker #datePickerField1 name="mydate" (dateChanged)="getDateRange($event, 'from', selectedProvider.value);" [options]="myDatePickerOptionsFrom" placeholder="{{ translateService.translatedArray['Pick date']}}"
+                    [(ngModel)]="model1" required></my-date-picker>
+            </div>
+        </div>
+        <div  class="col-sm-6">
+            <div class="col-sm-2 label-head"><label class="control-label">
+                    {{ translateService.translatedArray['to']}}:<span class="mandate"> </span></label>
+            </div>
+            <div class="col-sm-10">
+                <!--<div class="date-picker">
+                    <input id="inpDt-picker3" #datePickerField2 type="text" (blur)="getDateRange(datePickerField2.value, 'to', selectedProvider.value);" name="datePicker" placeholder="{{ translateService.translatedArray['Pick date']}}"
+                        close-text="Close" data-provide="datepicker" datepicker-popup="mm-dd-yyyy" class="datepicker form-control dailychk">
+                    <span class="input-group-btn">
+                            <button id="btn-date-picker3" class="btn btn-default btn-xs datePickerBtn" type="button" tabindex="0">
+                                <span class="icon-today"></span>
+                    </button>
+                    </span>
+                </div>-->
+                <my-date-picker #datePickerField2 name="mydate" (dateChanged)="getDateRange($event, 'to', selectedProvider.value);" 
+                    [options]="{  
+                        dateFormat: 'mm/dd/yyyy',
+                        disableUntil:{year: fromYr, month: fromMonth, day: fromDay},
+                        disableSince: {year: yr, month: mnth, day: day}                        
+                    }" placeholder="{{ translateService.translatedArray['Pick date']}}" [(ngModel)]="model2" >
+                </my-date-picker>
+            </div>
+        </div>        
+    </div>   
+</div>
+</div> 
+<div class="row btnDiv" *ngIf="isSearchButtonEnabled == 1">
+    <button type="button" class="btn btn-danger pull-right" (click)="getSearchResult(imsi.value, selectedProvider.value);">{{translateService.translatedArray['Search']}}</button>
+</div>
+<div class="row btnDiv" *ngIf="isSearchButtonEnabled == 0">
+    <button type="button" disabled class="btn btn-danger pull-right" >{{translateService.translatedArray['Search']}}</button>
+</div>
+<hr>
+<div class="row" *ngIf="searchResult==true">
+    <div class="col-md-12">        
+        <!--Code for loader-->
+        <div *ngIf="CdrData.length == 0 " class="col-sm-12 label-head" align="center">
+            <label class="control-label" for="noDataFound">
+            <div *ngIf="!isCdrLoaded" class="col-md-12 margin-top-bottom text-center">
+              <span class="loading-gif"><i class="fa fa-spinner fa-spin"></i></span>
+            </div>
+            <label *ngIf="isCdrLoaded" class="control-label">{{ translateService.translatedArray['empty_table_msg']}} </label>
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-6 tableDiv" *ngIf="CdrData.length > 0"> 
+                
+                <h3>{{ translateService.translatedArray['Results']}}
+                    <span *ngIf="selectedOption=='date' && isShowDate == 1"> from  &nbsp;{{selectedDateRange[0] | date:'dd-MMM-yyyy'}}&nbsp;  to  &nbsp;{{selectedDateRange[1] | date:'dd-MMM-yyyy'}}</span>
+                    <span *ngIf="selectedOption=='date' && isShowDate == 0"> for {{selectedDateRange[0] | date:'dd MMM yyyy'}}</span>
+                    <span *ngIf="selectedOption=='cMonth' || selectedOption=='pMonth'"> for the month {{monthNames[month-1]}} {{year}}</span>
+                    </h3>
+                <table class="table table-hover  table-bordered table-striped table-rwd table-responsive cdrtable" [style.height.px]="tableHeight" >
+                    <thead>
+                        <tr>
+                            <th *ngIf="(isShowDate == 1)">{{ translateService.translatedArray['Date']}}</th>
+                            <th #uBytes>{{ translateService.translatedArray['Uplink Bytes']}}</th>
+                            <th>{{ translateService.translatedArray['Downlink Bytes']}}</th>
+                            <th>{{ translateService.translatedArray['Total Bytes']}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cdr of CdrData">
+                           
+                            <td attr.data-label="{{ translateService.translatedArray['Date']}}" *ngIf="(isShowDate == 1)">
+                                <!--<label class="hidden-lg hidden-md pull-left lbl">{{ translateService.translatedArray['Date']}} </label>-->
+                                <!--{{dateToUTCDate(cdr.key.sliceDay) | date:'shortDate'}}--> 
+                                {{cdr.key.sliceMonth.substring(4, 6)}}/{{cdr.key.sliceDay.substring(6, 8)}}/{{cdr.key.sliceYear}}
+                                </td>
+                            <td attr.data-label="{{ translateService.translatedArray['Uplink Bytes']}}" data-label="Uplink Bytes">{{cdr.uplinkBytes}}</td>
+                            <td attr.data-label="{{ translateService.translatedArray['Downlink Bytes']}}">{{cdr.downlinkBytes}}</td>
+                            <td attr.data-label="{{ translateService.translatedArray['Total Bytes']}}">{{cdr.totalBytes}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--code for the pie graph -->
+            <div class="col-md-6 chartDiv" *ngIf="CdrData.length == 1">
+                <div id="pie_chart" (itemSelect)="itemSelected($event)" (itemDeselect)="itemDeselected($event)" [chartData]="[['Total', 'Total Bytes'], ['Uplink Bytes',uplinkBytes], ['Downlink Bytes', downlinkBytes]]"
+                    [chartOptions]="pie_ChartOptions" chartType="PieChart" GoogleChart>
+                </div>
+            </div>
+            <!---bar graph -->
+            <div class="col-md-6 graphDiv" *ngIf="CdrData.length > 1">
+                <div id="bar_chart" chartType="BarChart" [chartData]="barchartData" GoogleChart [chartOptions]="{
+                    isStacked: 'true',
+                    width: 'auto',
+                    height: barHeight,        
+                    legend: { position: 'top', maxLines: 4 , textStyle: {fontSize: 13}},
+                    bar: { groupWidth: '50%' },
+                    colors:['#0f6eb5', '#b7d0f1'],
+                    'chartArea': {left:0, top:50,'width': '100%', 'height': '100%'},                    
+                    hAxis: {
+                        minValue: 0,                       
+                        gridlines: {
+                            color: 'transparent'
+                        },
+                        viewWindow: {
+                            min:0
+                        },
+                        baselineColor:'transparent'
+                    },
+                     axes: {
+                        'x': {
+                            '0': {side: 'top'}
+                        }      
+                    }                                                           
+                    }">
+                </div>
+            </div> <!---eof graph code-->
+        </div>
+    </div>
+</div>
